@@ -1,5 +1,19 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.github.rholder:gradle-one-jar:1.0.3'
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'gradle-one-jar'
+apply plugin: 'application'
+
+mainClassName = 'com.fallcon.library.FallConLibraryApplication'
 
 version = '1.0.0'
 
@@ -7,8 +21,20 @@ dependencies {
     compile 'io.dropwizard:dropwizard-core:+'
 }
 
+run {
+    args 'server', './src/dist/config/fallconlibrary.yml'
+}
+
 repositories {
     mavenCentral()
+}
+
+task oneJar( type: OneJar ) {
+    mainClass = mainClassName
+}
+
+artifacts {
+    oneJar
 }
 
 task wrapper( type: Wrapper ) {
