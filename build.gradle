@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+dependencies {
+    compile 'io.dropwizard:dropwizard-core:+'
+}
+
+repositories {
+    mavenCentral()
+}
+
+task wrapper( type: Wrapper ) {
+    gradleVersion = '2.14'
+}
